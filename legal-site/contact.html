@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nous contacter — NailBite Coach</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Contact-specific styles ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .contact-card .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      border: none;
+    }
+
+    .contact-card p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .contact-card a.email-link {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      transition: background 0.15s;
+    }
+
+    .contact-card a.email-link:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .response-time {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .response-time::before {
+      content: "⏱";
+    }
+
+    @media (max-width: 600px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <div class="container">
+      <span class="logo">💅</span>
+      <div class="brand">
+        <h1>NailBite Coach</h1>
+        <p>Arrêtez de vous ronger les ongles, progressivement</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Breadcrumb ── -->
+  <nav class="site-nav" aria-label="Fil d'ariane">
+    <div class="container">
+      <a href="index.html">Accueil</a>
+      <span class="sep">›</span>
+      <span class="current">Nous contacter</span>
+    </div>
+  </nav>
+
+  <!-- ── Main ── -->
+  <main>
+    <div class="container">
+
+      <h1 class="page-title">Nous contacter</h1>
+      <p class="page-date">Une question ? Nous vous répondons dans les meilleurs délais.</p>
+
+      <div class="box box-purple">
+        <p>NailBite Coach est une application indépendante développée avec soin. Pour toute demande, n'hésitez pas à nous écrire directement par e-mail — c'est le moyen le plus rapide d'obtenir une réponse.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Support général -->
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <h3>Support &amp; questions générales</h3>
+          <p>Problème technique, question sur l'utilisation de l'application, suggestion d'amélioration…</p>
+          <a href="mailto:support@nailbite-coach.app" class="email-link">support@nailbite-coach.app</a>
+          <p class="response-time">Réponse sous 48 h ouvrées</p>
+        </div>
+
+        <!-- Données personnelles -->
+        <div class="contact-card">
+          <div class="contact-icon">🔒</div>
+          <h3>Données personnelles &amp; vie privée</h3>
+          <p>Demande d'accès, de rectification ou de suppression de vos données personnelles (RGPD / App Store).</p>
+          <a href="mailto:privacy@nailbite-coach.app" class="email-link">privacy@nailbite-coach.app</a>
+          <p class="response-time">Réponse sous 30 jours (délai légal)</p>
+        </div>
+
+      </div>
+
+      <!-- ── FAQ rapide ── -->
+      <h2>Questions fréquentes</h2>
+
+      <h3>Comment supprimer mon compte et mes données ?</h3>
+      <p>Rendez-vous dans <strong>Réglages → Mon compte → Supprimer mes données</strong> directement dans l'application, ou envoyez-nous un e-mail à <a href="mailto:privacy@nailbite-coach.app">privacy@nailbite-coach.app</a> avec votre identifiant.</p>
+
+      <h3>L'application ne fonctionne pas correctement.</h3>
+      <p>Avant de nous contacter, essayez de forcer la fermeture et de relancer l'application, puis de vérifier que votre système d'exploitation est à jour. Si le problème persiste, écrivez-nous à <a href="mailto:support@nailbite-coach.app">support@nailbite-coach.app</a> en précisant votre appareil et la version iOS/Android.</p>
+
+      <h3>Comment signaler un contenu inapproprié ou un abus ?</h3>
+      <p>Envoyez un e-mail à <a href="mailto:support@nailbite-coach.app">support@nailbite-coach.app</a> avec l'objet <strong>« Signalement »</strong> en décrivant la situation. Nous traiterons votre demande sous 72 h.</p>
+
+      <div class="box box-info">
+        <p><strong>Remarque :</strong> NailBite Coach est une petite équipe indépendante. Nous lisons tous les messages et nous engageons à vous répondre dans les délais indiqués ci-dessus.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="privacy.html">Politique de confidentialité</a>
+        <a href="terms.html">Conditions d'utilisation</a>
+        <a href="contact.html">Nous contacter</a>
+      </div>
+      <hr class="footer-divider" />
+      <p class="footer-meta">
+        <strong>NailBite Coach</strong> — Application mobile de thérapie comportementale pour arrêter de se ronger les ongles.<br />
+        © 2024 NailBite Coach. Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(timeout 8 node server.js)",
+      "Bash(curl -s \"https://api.github.com/repos/tiktok/tiktok-business-android-sdk/git/trees/main?recursive=1\")",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:ads.tiktok.com)",
+      "Bash(curl -s https://api.github.com/repos/tiktok/tiktok-business-android-sdk/releases)",
+      "Bash(python3 -c \"import json,sys; releases=json.load\\(sys.stdin\\); [print\\(r[''''tag_name''''], r[''''name''''], r[''''published_at''''][:10]\\) for r in releases]\")",
+      "Bash(node -e \"const chunks=[]; process.stdin.on\\(''''data'''',d=>chunks.push\\(d\\)\\); process.stdin.on\\(''''end'''',\\(\\)=>{ const data=JSON.parse\\(chunks.join\\(''''''''\\)\\); data.forEach\\(r=>console.log\\(r.tag_name, r.name, r.published_at?.slice\\(0,10\\)\\)\\); }\\)\")"
+    ]
+  }
+}
