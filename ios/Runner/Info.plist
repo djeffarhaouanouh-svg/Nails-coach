@@ -41,6 +41,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>NailBite Coach utilise l'appareil photo pour prendre une photo quotidienne de vos ongles et suivre votre progression.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>NailBite Coach accède à votre galerie pour choisir une photo de vos ongles et suivre votre progression.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>NailBite Coach enregistre les photos de vos ongles dans votre galerie.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

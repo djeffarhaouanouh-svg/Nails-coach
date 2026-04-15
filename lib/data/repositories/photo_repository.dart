@@ -59,7 +59,7 @@ class PhotoRepository {
   Future<DailyPhoto?> pickFromGallery() async {
     // Android 13+ uses READ_MEDIA_IMAGES, older uses READ_EXTERNAL_STORAGE
     final status = await Permission.photos.request();
-    if (status.isPermanentlyDenied) return null;
+    if (!status.isGranted && !status.isLimited) return null;
     try {
       final XFile? image = await _picker.pickImage(
         source: ImageSource.gallery,

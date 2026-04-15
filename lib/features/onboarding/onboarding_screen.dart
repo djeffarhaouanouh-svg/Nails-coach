@@ -11,7 +11,7 @@ import '../../main.dart';
 import '../../theme/app_theme.dart';
 import '../../app.dart';
 import '../../shared/widgets/mascot_widget.dart';
-import 'trial_screen.dart';
+// trial_screen.dart kept in project (unused in build flow)
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -188,7 +188,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
     if (mounted) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const TrialScreen()),
+        MaterialPageRoute(builder: (_) => const MainShell()),
         (_) => false,
       );
     }

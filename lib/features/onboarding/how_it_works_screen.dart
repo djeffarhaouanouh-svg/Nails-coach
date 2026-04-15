@@ -5,7 +5,6 @@ import '../../theme/app_theme.dart';
 import '../legal/terms_screen.dart';
 import '../legal/privacy_screen.dart';
 import '../legal/legal_screen.dart';
-import 'subscription_screen.dart';
 
 class HowItWorksScreen extends StatelessWidget {
   const HowItWorksScreen({super.key});
@@ -17,11 +16,6 @@ class HowItWorksScreen extends StatelessWidget {
     );
   }
 
-  void _goToSubscription(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const SubscriptionScreen()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +131,7 @@ class HowItWorksScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
               child: ElevatedButton(
-                onPressed: () => _goToSubscription(context),
+                onPressed: () => _goToApp(context),
                 child: const Text('Essayer GRATUITEMENT'),
               ),
             ),
