@@ -2,7 +2,7 @@ name: nailbite_coach_app
 description: "NailBite Coach — 90-day nail biting habit breaking app."
 publish_to: 'none'
 
-version: 1.0.10+27
+version: 1.0.11+28
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
