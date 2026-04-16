@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -42,8 +43,12 @@ class PhotoRepository {
   }
 
   Future<DailyPhoto?> capturePhoto() async {
-    final status = await Permission.camera.request();
-    if (!status.isGranted) return null;
+    // Sur iOS, l'appareil photo demande la permission au moment de l'ouverture
+    // via image_picker. Sur Android on la demande explicitement.
+    if (!Platform.isIOS) {
+      final status = await Permission.camera.request();
+      if (!status.isGranted) return null;
+    }
     try {
       final XFile? image = await _picker.pickImage(
         source: ImageSource.camera,
@@ -51,15 +56,19 @@ class PhotoRepository {
       );
       if (image == null) return null;
       return await _savePhoto(image);
-    } catch (_) {
+    } catch (e) {
+      debugPrint('[PhotoRepo] capturePhoto error: $e');
       return null;
     }
   }
 
   Future<DailyPhoto?> pickFromGallery() async {
-    // Android 13+ uses READ_MEDIA_IMAGES, older uses READ_EXTERNAL_STORAGE
-    final status = await Permission.photos.request();
-    if (!status.isGranted && !status.isLimited) return null;
+    // Sur iOS 14+, PHPickerViewController gère l'accès à la galerie
+    // sans permission préalable. On ne demande la permission que sur Android.
+    if (!Platform.isIOS) {
+      final status = await Permission.photos.request();
+      if (!status.isGranted && !status.isLimited) return null;
+    }
     try {
       final XFile? image = await _picker.pickImage(
         source: ImageSource.gallery,
@@ -67,7 +76,8 @@ class PhotoRepository {
       );
       if (image == null) return null;
       return await _savePhoto(image);
-    } catch (_) {
+    } catch (e) {
+      debugPrint('[PhotoRepo] pickFromGallery error: $e');
       return null;
     }
   }

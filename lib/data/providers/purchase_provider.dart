@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -13,6 +14,12 @@ class _PremiumNotifier extends StateNotifier<AsyncValue<bool>> {
   StreamSubscription<CustomerInfo>? _sub;
 
   void _init() {
+    // Sur iOS, RevenueCat n'est pas utilisé : tout le monde est traité comme gratuit
+    if (Platform.isIOS) {
+      state = const AsyncValue.data(false);
+      return;
+    }
+
     // Seed with last known value so the UI doesn't flicker on re-navigation
     final cached = PurchaseService.lastCustomerInfo;
     if (cached != null) {

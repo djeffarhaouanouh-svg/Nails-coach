@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -175,8 +177,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       }
     }
 
-    AppsFlyerService.trackSignUp();
-    AppsFlyerService.trackOnboardingCompleted();
+    if (!Platform.isIOS) {
+      AppsFlyerService.trackSignUp();
+      AppsFlyerService.trackOnboardingCompleted();
+    }
 
     // Track onboarding completion in Mixpanel
     try {

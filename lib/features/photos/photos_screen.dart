@@ -121,7 +121,19 @@ class _AddPhotoFab extends ConsumerWidget {
                 onPressed: () async {
                   Navigator.pop(context);
                   final repo = ref.read(photoRepositoryProvider);
-                  await repo.capturePhoto();
+                  final photo = await repo.capturePhoto();
+                  if (photo == null && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text(
+                            'Impossible d\'accéder à l\'appareil photo. Vérifiez les permissions dans Réglages.'),
+                        backgroundColor: AppTheme.primary,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                      ),
+                    );
+                  }
                 },
                 icon: const Icon(Icons.camera_alt),
                 label: const Text('Prendre avec l\'appareil photo'),
@@ -131,7 +143,19 @@ class _AddPhotoFab extends ConsumerWidget {
                 onPressed: () async {
                   Navigator.pop(context);
                   final repo = ref.read(photoRepositoryProvider);
-                  await repo.pickFromGallery();
+                  final photo = await repo.pickFromGallery();
+                  if (photo == null && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text(
+                            'Impossible d\'accéder à la galerie. Vérifiez les permissions dans Réglages.'),
+                        backgroundColor: AppTheme.primary,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                      ),
+                    );
+                  }
                 },
                 icon: const Icon(Icons.photo_library),
                 label: const Text('Choisir depuis la galerie'),

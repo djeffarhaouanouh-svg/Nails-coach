@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -45,17 +47,18 @@ void main() async {
   final userSettings = await settingsRepo.getOrCreateSettings();
   ApiService.createUser(userSettings.id, name: userSettings.userName);
 
-  // Init AppsFlyer (attribution + TikTok Ads conversion tracking)
-  // initSdk() déclenche automatiquement l'event install/first_open côté SDK.
-  await AppsFlyerService.init();
+  // Init AppsFlyer — Android uniquement (désactivé sur iOS)
+  if (!Platform.isIOS) {
+    await AppsFlyerService.init();
+  }
 
-  // Init RevenueCat — pass platform-specific keys
-  // Replace with your real keys from the RevenueCat dashboard (Project > API Keys)
-  await PurchaseService.init(
-    androidApiKey: 'goog_tTsMTnTFbSevwbmBATmfmcxEOty',
-    // iosApiKey: 'appl_XXXX', // uncomment when shipping iOS
-    appUserId: userSettings.id,
-  );
+  // Init RevenueCat — Android uniquement (désactivé sur iOS)
+  if (!Platform.isIOS) {
+    await PurchaseService.init(
+      androidApiKey: 'goog_tTsMTnTFbSevwbmBATmfmcxEOty',
+      appUserId: userSettings.id,
+    );
+  }
 
   // Init timezone
   tz.initializeTimeZones();

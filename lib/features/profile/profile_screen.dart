@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -149,53 +151,55 @@ class _ProfileBodyState extends ConsumerState<_ProfileBody> {
             ]),
           ),
 
-          // ── Abonnement ───────────────────────────────────────────────────
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
-            child: _sectionTitle('Abonnement'),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            child: _SettingsCard(children: [
-              ListTile(
-                leading: const Icon(Icons.star_outline_rounded,
-                    color: AppTheme.accent, size: 22),
-                title: const Text('Gérer mon abonnement',
-                    style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text('Voir les détails de votre essai gratuit'),
-                trailing: const Icon(Icons.chevron_right,
-                    color: AppTheme.textSecondary),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const HowItWorksScreen()),
+          // ── Abonnement — Android uniquement (pas de paywall sur iOS) ─────
+          if (!Platform.isIOS) ...[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
+              child: _sectionTitle('Abonnement'),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: _SettingsCard(children: [
+                ListTile(
+                  leading: const Icon(Icons.star_outline_rounded,
+                      color: AppTheme.accent, size: 22),
+                  title: const Text('Gérer mon abonnement',
+                      style: TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: const Text('Voir les détails de votre essai gratuit'),
+                  trailing: const Icon(Icons.chevron_right,
+                      color: AppTheme.textSecondary),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const HowItWorksScreen()),
+                  ),
                 ),
-              ),
-              const Divider(height: 1, indent: 16, endIndent: 16),
-              ListTile(
-                leading: const Icon(Icons.manage_accounts_rounded,
-                    color: AppTheme.accent, size: 22),
-                title: const Text('Gérer mon abonnement',
-                    style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text(
-                    'Gérer, restaurer ou annuler — Customer Center'),
-                trailing: const Icon(Icons.chevron_right,
-                    color: AppTheme.textSecondary),
-                onTap: _presentCustomerCenter,
-              ),
-              const Divider(height: 1, indent: 16, endIndent: 16),
-              ListTile(
-                leading: const Icon(Icons.restore_rounded,
-                    color: AppTheme.accent, size: 22),
-                title: const Text('Restaurer les achats',
-                    style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text('Récupérer un abonnement existant'),
-                trailing: const Icon(Icons.chevron_right,
-                    color: AppTheme.textSecondary),
-                onTap: _restorePurchases,
-              ),
-            ]),
-          ),
+                const Divider(height: 1, indent: 16, endIndent: 16),
+                ListTile(
+                  leading: const Icon(Icons.manage_accounts_rounded,
+                      color: AppTheme.accent, size: 22),
+                  title: const Text('Gérer mon abonnement',
+                      style: TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: const Text(
+                      'Gérer, restaurer ou annuler — Customer Center'),
+                  trailing: const Icon(Icons.chevron_right,
+                      color: AppTheme.textSecondary),
+                  onTap: _presentCustomerCenter,
+                ),
+                const Divider(height: 1, indent: 16, endIndent: 16),
+                ListTile(
+                  leading: const Icon(Icons.restore_rounded,
+                      color: AppTheme.accent, size: 22),
+                  title: const Text('Restaurer les achats',
+                      style: TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: const Text('Récupérer un abonnement existant'),
+                  trailing: const Icon(Icons.chevron_right,
+                      color: AppTheme.textSecondary),
+                  onTap: _restorePurchases,
+                ),
+              ]),
+            ),
+          ],
 
           // ── À propos ─────────────────────────────────────────────────────
           Padding(
